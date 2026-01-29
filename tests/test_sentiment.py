@@ -59,7 +59,7 @@ class TestSentimentScorer:
         """Test scoring a post with title only."""
         scorer = SentimentScorer(model="vader")
         result = scorer.score_post(
-            title="AAPL is going to the moon!",
+            title="This stock is amazing and I love it!",
             selftext="",
         )
 

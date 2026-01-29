@@ -283,7 +283,7 @@ class TestBacktestExporter:
     @pytest.fixture
     def sample_results(self):
         """Create sample results for export."""
-        dates = pd.date_range("2023-01-01", "2023-01-31", freq="D")
+        dates = pd.date_range("2023-01-01", "2023-03-31", freq="D")
         equity_curve = pd.Series([100000 + i * 100 for i in range(len(dates))], index=dates)
 
         trades = pd.DataFrame({

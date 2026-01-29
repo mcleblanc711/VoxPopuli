@@ -267,11 +267,17 @@ class SentimentScorer:
             result.columns = ["date", "sentiment"]
 
         # Add post count and comment velocity
-        counts = df.groupby("date").agg({
-            sentiment_col: "count",
-            "num_comments": "sum" if "num_comments" in df.columns else "count",
-        }).reset_index()
-        counts.columns = ["date", "post_count", "comment_count"]
+        agg_dict = {sentiment_col: "count"}
+        if "num_comments" in df.columns:
+            agg_dict["num_comments"] = "sum"
+
+        counts = df.groupby("date").agg(agg_dict).reset_index()
+
+        if "num_comments" in df.columns:
+            counts.columns = ["date", "post_count", "comment_count"]
+        else:
+            counts.columns = ["date", "post_count"]
+            counts["comment_count"] = counts["post_count"]  # Fallback
 
         result = result.merge(counts, on="date")
 
