@@ -3,6 +3,7 @@
 import logging
 from dataclasses import dataclass, field
 from datetime import date, timedelta
+from pathlib import Path
 from typing import Any
 
 import pandas as pd
@@ -456,7 +457,7 @@ class BacktestEngine:
         Returns:
             Path to exported file.
         """
-        self.exporter.output_dir = output_dir
+        self.exporter.output_dir = Path(output_dir)
         trades_df = pd.DataFrame([t.to_dict() for t in result.trades])
 
         path = self.exporter.export_json(

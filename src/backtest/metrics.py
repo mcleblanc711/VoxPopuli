@@ -231,7 +231,7 @@ class MetricsCalculator:
         Returns:
             Win rate as decimal.
         """
-        if len(trades) == 0:
+        if len(trades) == 0 or "pnl" not in trades.columns:
             return 0.0
         return (trades["pnl"] > 0).sum() / len(trades)
 
@@ -244,6 +244,9 @@ class MetricsCalculator:
         Returns:
             Profit factor.
         """
+        if len(trades) == 0 or "pnl" not in trades.columns:
+            return 0.0
+
         gross_profit = trades[trades["pnl"] > 0]["pnl"].sum()
         gross_loss = abs(trades[trades["pnl"] < 0]["pnl"].sum())
 

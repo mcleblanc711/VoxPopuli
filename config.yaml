@@ -35,7 +35,7 @@ strategy:
     # Attention Momentum
     top_n: 10
     holding_period: 5
-    min_mentions: 50
+    min_mentions: 5
 
     # Sentiment Divergence
     sentiment_threshold: 0.3
