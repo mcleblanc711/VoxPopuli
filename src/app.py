@@ -2,9 +2,14 @@
 """VoxPopuli CLI Application."""
 
 import logging
+import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Optional
+
+# Add parent directory to path for direct script execution
+if __name__ == "__main__":
+    sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import typer
 import yaml
