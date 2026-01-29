@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+*.egg-info/
+dist/
+build/
+eggs/
+.eggs/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Data files (large)
+data/reddit/*.parquet
+data/reddit/raw/
+data/prices/*.parquet
+data/results/*.json
+data/results/*.pkl
+
+# Dashboard
+dashboard/node_modules/
+dashboard/dist/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Claude
+.claude/

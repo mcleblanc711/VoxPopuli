@@ -1,0 +1,97 @@
+# VoxPopuli Configuration
+
+data:
+  # Subreddits to analyze
+  subreddits:
+    - wallstreetbets
+    - stocks
+    - investing
+    - options
+    - stockmarket
+
+  # Date range for analysis
+  date_range:
+    start: "2022-01-01"
+    end: "2023-12-31"
+
+  # Reddit data settings
+  reddit:
+    include_comments: true
+    top_n_comments: 10
+    min_score: 1
+
+  # Price data settings
+  prices:
+    source: yfinance  # ibkr or yfinance
+    ibkr_host: "127.0.0.1"
+    ibkr_port: 7497
+
+strategy:
+  # Strategy to use
+  name: attention_momentum
+
+  # Strategy-specific parameters
+  params:
+    # Attention Momentum
+    top_n: 10
+    holding_period: 5
+    min_mentions: 50
+
+    # Sentiment Divergence
+    sentiment_threshold: 0.3
+    price_change_threshold: 0.02
+    lookback_period: 5
+
+    # Contrarian
+    extreme_threshold: 0.7
+
+    # Cross-Subreddit
+    min_subreddits: 3
+
+    # Velocity Sentiment
+    velocity_threshold: 2.0
+    sentiment_shift_threshold: 0.2
+
+backtest:
+  # Capital and sizing
+  initial_capital: 100000
+  position_size: 0.1  # 10% per position
+  max_positions: 10
+
+  # Trading rules
+  allow_shorts: false
+  transaction_cost: 0.001  # 0.1% per trade
+  slippage: 0.0005  # 0.05%
+
+  # Risk management
+  stop_loss: null  # Optional stop loss (e.g., 0.05 for 5%)
+  take_profit: null  # Optional take profit
+
+  # Benchmark
+  benchmark: SPY
+
+sentiment:
+  # Model to use
+  model: vader  # vader or finbert
+
+  # Scoring settings
+  include_title: true
+  include_selftext: true
+  include_comments: true
+  top_n_comments: 10
+
+  # Weighting
+  title_weight: 1.0
+  selftext_weight: 0.5
+  comments_weight: 0.3
+
+output:
+  # Results directory
+  results_dir: data/results
+
+  # Export format
+  export_json: true
+  export_csv: false
+
+  # Dashboard data path
+  dashboard_data: dashboard/public/data
